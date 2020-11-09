@@ -198,7 +198,7 @@ def VideoUrl(url):
 
 def binCarbon(bincc):
     #print(bincc)
-    carbonraw = r.get('http://erk03k.heliohost.us/carbon.php?extra='+bincc).text
+    carbonraw = r.get('http://c602fda30e3278320.temporary.link/carbon.php?extra='+bincc).text
     carbonHTML = bs4.BeautifulSoup(carbonraw, 'lxml').find('p').text.split()
     if 'No' in carbonHTML:
         return 'No hay de esas bro' 
