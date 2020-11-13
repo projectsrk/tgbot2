@@ -145,16 +145,15 @@ def ccCheck(ccs):
 
 
 def binCheck(ccbin):
-    key = choice(['ARu7lxY0tHOAR02ow5crggaOclThc1Nq', 'LF1N0CwS2leyPeL4n1idomUjUWFaErzi'])
-    binlist = 'https://api.iinapi.com/iin?key='+key+'&digits='
-    binCheck = r.get(binlist+ccbin)
-    data = binCheck.json().get('result') if bool(binCheck.json().get('result')) != False else 'No encontrado'
-    country = data.get('IssuingCountry').lower().title() if bool(data.get('IssuingCountry')) is not False else '-'
-    brand = data.get('CardBrand').lower().title() if bool(data.get('CardBrand')) is not False else '-'
-    cardtype = data.get('CardType').lower().title() if bool(data.get('CardType')) is not False else '-'
-    level = data.get('CardCategory').lower().title() if bool(data.get('CardCategory')) is not False else '-'
-    bank = data.get('IssuingInstitution').lower().title() if bool(data.get('IssuingInstitution')) is not False else '-'
-    return f'Bin: {ccbin} \nPaís: {country} \nBrand: {brand} \nTipo: {cardtype} \nNivel: {level} \nBanco: {bank}'
+    #key = choice(['ARu7lxY0tHOAR02ow5crggaOclThc1Nq', 'LF1N0CwS2leyPeL4n1idomUjUWFaErzi'])
+    binlist = 'https://lookup.binlist.net/'
+    getPage = r.get(binlist+str(ccbin)).json()
+    getScheme = getPage['scheme'].lower().title() if bool(getPage['scheme'].lower().title()) is not False else '-'
+    getType = getPage['type'].lower().title() if bool(getPage['type'].lower().title()) is not False else '-'
+    getCountry = getPage['country']['name'].lower().title() if bool(getPage['country']['name'].lower().title()) is not False else '-'
+    getBank = getPage['bank']['name'].lower().title() if bool(getPage['bank']['name'].lower().title()) is not False else '-'
+    return f'Bin: {bincc} \nBrand: {getScheme} \nTipo: {getType} \nPaís: {getCountry} \nBanco: {getBank}'
+
 
 
 def HTMLParser(url):
