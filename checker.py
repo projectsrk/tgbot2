@@ -144,7 +144,7 @@ def ccCheck(ccs):
     return '\n'.join(ccList)
 
 
-def binCheck(ccbin):
+def binCheck(bincc):
     #key = choice(['ARu7lxY0tHOAR02ow5crggaOclThc1Nq', 'LF1N0CwS2leyPeL4n1idomUjUWFaErzi'])
     binlist = 'https://lookup.binlist.net/'
     getPage = r.get(binlist+str(ccbin)).json()
@@ -251,14 +251,14 @@ def FBVideo(update, context):
 
 def binGet(update, context):
     command = update.effective_message.text.split()[0]
-    print('Comando: ' + command)
+    #print('Comando: ' + command)
     if command != '!bin':
         return
     else:
         ccbinr = re.findall('((3|4|5)\d{5})', update.effective_message.text.split()[1])[0]
-        print(ccbinr)
+        #print(ccbinr)
         ccbinr = ccbinr[0]
-        print(ccbinr)
+        #print(ccbinr)
         context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text=binCheck(ccbinr),)
 
 def binGen(update, context):
