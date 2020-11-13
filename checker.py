@@ -251,14 +251,14 @@ def FBVideo(update, context):
 
 def binGet(update, context):
     command = update.effective_message.text.split()[0]
-    #print(command)
+    print('Comando: ' + command)
     if command != '!bin':
         return
     else:
         ccbinr = re.findall('((3|4|5)\d{5})', update.effective_message.text.split()[1])[0]
-        #print(ccbinr)
+        print(ccbinr)
         ccbinr = ccbinr[0]
-        #print(ccbinr)
+        print(ccbinr)
         context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text=binCheck(ccbinr),)
 
 def binGen(update, context):
