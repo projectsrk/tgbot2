@@ -147,7 +147,7 @@ def ccCheck(ccs):
 def binCheck(bincc):
     #key = choice(['ARu7lxY0tHOAR02ow5crggaOclThc1Nq', 'LF1N0CwS2leyPeL4n1idomUjUWFaErzi'])
     binlist = 'https://lookup.binlist.net/'
-    getPage = r.get(binlist+str(ccbin)).json()
+    getPage = r.get(binlist+str(bincc)).json()
     getScheme = getPage['scheme'].lower().title() if bool(getPage['scheme'].lower().title()) is not False else '-'
     getType = getPage['type'].lower().title() if bool(getPage['type'].lower().title()) is not False else '-'
     getCountry = getPage['country']['name'].lower().title() if bool(getPage['country']['name'].lower().title()) is not False else '-'
