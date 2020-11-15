@@ -255,7 +255,7 @@ def binGet(update, context):
     if command != '!bin':
         return
     else:
-        ccbinr = re.findall('((3|4|5)\d{5})', update.effective_message.text.split()[1])[0]
+        ccbinr = re.findall('((3|4|5|6)\d{5})', update.effective_message.text.split()[1])[0]
         #print(ccbinr)
         ccbinr = ccbinr[0]
         #print(ccbinr)
@@ -293,7 +293,7 @@ def ccChk(update, context):
                 global ccList
                 ccList = []
                 full = update.effective_message.text.split()[1]
-                full = (re.findall('(((5|4)\d{5}(x|\d){10}|3\d{5}(x|\d){9}).(\d{2}|rnd).(\d{2,4}|rnd).(\d{3,4}|rnd))', full)[0])[0]
+                full = (re.findall('(((6|5|4)\d{5}(x|\d){10}|3\d{5}(x|\d){9}).(\d{2}|rnd).(\d{2,4}|rnd).(\d{3,4}|rnd))', full)[0])[0]
                 full = full.split('|')
                 extrap, month, year, cvv = full[0], full[1], full[2], full[3]
                 context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text=ccCheck([i.split('|') for i in ccGen(extrap, month, year, cvv).split('\n')]))
@@ -309,7 +309,7 @@ def carbonGet(update, context):
         data = update.effective_message.text.split()
         #print(f'{len(data[1])}')
         try:
-            if data[0] == '!carbon' and bool(re.match('(3|4|5)\d{5,14}', data[1])):
+            if data[0] == '!carbon' and bool(re.match('(3|4|5|6)\d{5,14}', data[1])):
                 try:
                     context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text=binCarbon(data[1]))
                 except Exception as e:
@@ -317,7 +317,7 @@ def carbonGet(update, context):
                         context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text='No hay desos bro')
                     else:
                         context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text='Diganle al pendejo que me creo que hubo este error: '+str(e))
-            elif bool(re.match('(3|4|5)\d{5,14}', data[1])) == False:
+            elif bool(re.match('(3|4|5|6)\d{5,14}', data[1])) == False:
                 context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text='Bin no funcional')
         except:
             context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text='Hubo un error')
