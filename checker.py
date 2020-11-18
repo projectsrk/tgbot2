@@ -255,14 +255,14 @@ def binGet(update, context):
     if command != '!bin':
         return
     else:
-		try:
-			ccbinr = re.findall('((3|4|5|6)\d{5})', update.effective_message.text.split()[1])[0]
-			#print(ccbinr)
-			ccbinr = ccbinr[0]
-			#print(ccbinr)
-			context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text=binCheck(ccbinr))
-		exceṕt:
-			context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text='Tu bin no sirve, bro)
+        try:
+            ccbinr = re.findall('((3|4|5|6)\d{5})', update.effective_message.text.split()[1])[0]
+            #print(ccbinr)
+            ccbinr = ccbinr[0]
+            #print(ccbinr)
+            context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text=binCheck(ccbinr))
+        except:
+            context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text='Tu bin no sirve, bro)
 
 
 def binGen(update, context):
