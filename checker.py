@@ -148,10 +148,10 @@ def binCheck(bincc):
     #key = choice(['ARu7lxY0tHOAR02ow5crggaOclThc1Nq', 'LF1N0CwS2leyPeL4n1idomUjUWFaErzi'])
     binlist = 'https://lookup.binlist.net/'
     getPage = r.get(binlist+str(bincc)).json()
-    getScheme = getPage['scheme'].lower().title() if bool(getPage['scheme'].lower().title()) is not False else '-'
-    getType = getPage['type'].lower().title() if bool(getPage['type'].lower().title()) is not False else '-'
-    getCountry = getPage['country']['name'].lower().title() if bool(getPage['country']['name'].lower().title()) is not False else '-'
-    getBank = getPage['bank']['name'].lower().title() if bool(getPage['bank']['name'].lower().title()) is not False else '-'
+    getScheme = getPage['scheme'].lower().title() if bool(getPage['scheme']) is not False else '-'
+    getType = getPage['type'].lower().title() if bool(getPage['type']) is not False else '-'
+    getCountry = getPage['country']['name'].lower().title() if bool(getPage['country']) is not False else '-'
+    getBank = getPage['bank']['name'].lower().title() if bool(getPage['bank']) is not False else '-'
     return f'Bin: {bincc} \nBrand: {getScheme} \nTipo: {getType} \nPaís: {getCountry} \nBanco: {getBank}'
 
 
@@ -255,11 +255,15 @@ def binGet(update, context):
     if command != '!bin':
         return
     else:
-        ccbinr = re.findall('((3|4|5|6)\d{5})', update.effective_message.text.split()[1])[0]
-        #print(ccbinr)
-        ccbinr = ccbinr[0]
-        #print(ccbinr)
-        context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text=binCheck(ccbinr),)
+		try:
+			ccbinr = re.findall('((3|4|5|6)\d{5})', update.effective_message.text.split()[1])[0]
+			#print(ccbinr)
+			ccbinr = ccbinr[0]
+			#print(ccbinr)
+			context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text=binCheck(ccbinr))
+		exceṕt:
+			context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text='Tu bin no sirve, bro)
+
 
 def binGen(update, context):
     command = update.effective_message.text.split()[0]
