@@ -262,7 +262,7 @@ def binGet(update, context):
             #print(ccbinr)
             context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text=binCheck(ccbinr))
         except:
-            context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text='Tu bin no sirve, bro)
+            context.bot.send_message(chat_id=update.effective_chat.id, reply_to_message_id=update.effective_message.message_id, text='Tu bin no sirve, bro')
 
 
 def binGen(update, context):
